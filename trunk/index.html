@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+
+		<meta http-equiv="content-type"
+		content="text/html; charset=ISO-8859-1">
+		<title>cleansweep</title>
+	</head>
+	<body>
+
+		<table cellpadding="2" cellspacing="2" border="0"
+			style="text-align: left; width: 100%;">
+			<tbody>
+				<tr>
+					<td style="vertical-align: top;"><a
+							href="http://developer.berlios.de/projects/confiserie/"
+							title="BerliOS Developer"> <img
+							src="http://developer.berlios.de/bslogo.php?group_id=1859"
+							alt="BerliOS Developer Logo" border="0" height="32" width="124"></a></td>
+					<td style="vertical-align: top;"><br>
+					</td>
+					<td style="vertical-align: top; text-align: right;"><a
+							href="http://www.opensource.org/docs/definition.php"> <img
+							src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png"
+							border="0" height="95" width="110"></a></td>
+				</tr>
+
+			</tbody> 		
+		</table>
+		<br>
+
+		<h1> What is cleansweep?</h1>
+		it's a set of scripts that help you find/manage duplicated files on
+		your system <br>
+		it can be used for finding duplicated files after a crash (imagine
+		you got a disk crashed, you try to undelete, 		which will recover some
+		moved files [that you, for exemple, previously archived on a disk])<br>
+		it can be used to find duplicated downloaded files<br>
+		it can be used to detect file corruption<br>
+		it can be used to synchronise your files with another people's ones<br>
+
+		<h1>how do I use them?</h1>
+
+		<h2>md5dir.sh</h2>
+		is a script that perform md5sums on the files into a single directory
+		and store them into a file. A md5sum is 		like a finger print of a
+		file : it identify a file. 		it's usage is simple : md5dir.sh
+		your/file/to/store.md5 the/dir/toperform/on 		<br>
+		the script isn't only a md5sum creator but can determine if we need to
+		udpate the md5sums ie remove md5sums of 		files that have been deleted
+		and add the m5sums of new files<br>
+		this is particularly usefull if you run on an encrypted filesystem :
+		imagine the time needed to recompute all 		md5sums of everyfiles on an
+		120Go encrypted disk?<br>
+		the script will create md5sums of <span
+			style="text-decoration: underline;">every file within a directory and
+			all it's subdirs</span><br>
+
+		<h2>md5dirs.sh</h2>
+		this script a generalisation of the previous..<br>
+		the principe is to do a md5dir on a set of directories. it will perform md5dir.sh 
+		on every given dir and create the files dirwith/replacedby_.md5sums.<br>
+		exemple : md5dirs.sh /home/jlm/emule will create a _home_jlm_emule.md5sums file <br>
+		the files are created in current working directory<br>
+
+		<h2>samefile.sh</h2>
+		is a script that help you interpret the files you created with the 2
+		above scripts. <br>
+		it'll process a set of couple {repository,md5sums_files} and create
+		information about files that have : <br>
+		<ul>
+			<li> 		the same fingerprint : likely duplicated files</li>
+			<li> 		the same name but different fingerprint : likely corrupted
+			files </li>
+			<li> 		are uniq on the system : likely files that are for exemple
+			new....</li>
+		</ul>
+		why using a couple {repository,md5sums_files}? because a fingerprint
+		is useless if you can't determine where it's 		stored. Since one goal
+		is to help perform synchronisation the mount point of the disc when
+		performing the tests 		can not be the mount point when creating the
+		md5sums.... so we need to have information on where the directory
+		corresponding to the md5sum is located on the system.<br>
+		<span style="text-decoration: underline;"> 		samefile will produce a lot
+			of files and have to be run into an empty directory if you don't want
+			to experience 		cleaning trouble......</span><br>
+		if you have done a mistake a rm *md5sum.txt and rm common_*_name.txt
+		and rm unique_file.txt will delete almost 		all produced files<br>
+
+		<h2>clean_samefiles.sh</h2>
+		a small script that will help cleaning : it's rather boring task ^_^<br>
+		it has to be run on the directory used to find samefile... it will
+		display a list of duplicated file a 		fingerprint at a time and prompt
+		you to know the files to keep. on success the script will delete the
+		duplication entry<br>
+
+		<h1> recommanded use </h1>
+		at this time writing : I recommand to store your md5sumsfiles into
+		the root directory of the mounted drive<br>
+		I recommand you to create a md5sumfile for each directory in the root
+		directory of the mounted drive : it'll help 		you to select finely what
+		to check for duplication 		<br>
+
+		<h1> LINKS </h1>
+		downloads/cvs.... on berlios :<a
+			href="http://developer.berlios.de/projects/confiserie/"
+			title="BerliOS Developer"> <img
+			src="http://developer.berlios.de/bslogo.php?group_id=1859"
+			alt="BerliOS Developer Logo" border="0" height="32" width="124"></a><br>
+		<a href="http://cityhunter.is-a-geek.org"> my personal home runned
+			webserver ^_^</a> 	
+	</body>
+</html>
