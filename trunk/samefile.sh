@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/bin/sh
+#/***********************************************************************
+#* copyright (c) 2004 MALET Jean-luc aka cityhunter
+#* This program is free software; you can redistribute it and/or modify
+#* it under the terms of the artistic license as published in the top source dir of the
+#* package
+#************************************************************************/
 
 TEMP_MD5_SAME_ref="/tmp/temp_md5_same.md5"
 if [ -z "$TEMP_MD5_SAME" ] 
@@ -47,7 +53,7 @@ help() {
 	exit
 }
 
-if [ "$1" == "--help" ] || [ $# -le 1 ]
+if [ "$1" == "--help" ] || [ "$#" -le 1 ]
 then
 	help
 fi
@@ -68,7 +74,7 @@ do
       case  $1  in
 			-f) cat "$3"|sed  "s:\*/:\*$2/:" >> "$TEMP_MD5_SAME"
 				shift 3 ;;
-          *)  help ;;
+       *)  help ;;
       esac
    else
 		shift
