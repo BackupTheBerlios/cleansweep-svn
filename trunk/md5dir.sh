@@ -27,6 +27,11 @@ IFS=$'\n'
 SAME=0
 DIFF=0
 UPDATE=0
+if [ "$VERBOSE" != "0" ]
+then 
+	VERBOSE=1
+fi
+
 if [ -f "$1" ]; then
 #try update the file
 #make some sanity check : is the first line correct? 
