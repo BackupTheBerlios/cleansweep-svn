@@ -18,7 +18,7 @@ help() {
 	exit
 }
 
-if [ "$1" == "--help" ] || [ $# -le 1 ] || [ "$1" == "-h" ]
+if [ "$1" == "--help" ] ||  [ "$1" == "-h" ]
 then
 	help
 fi
@@ -32,14 +32,9 @@ for i in "$@"; do
 done
 
 
-i=$((0))
 while [ -n "$1" ]
 do
-	i=$(($i+1))
 	TEMP_MD5_SAME=$(echo $1| awk '{gsub("/","_"); printf("%s",$0);}').md5sums
-	if [ -f "$TEMP_MD5_SAME" ]; then
-		rm -i "$TEMP_MD5_SAME"
-	fi
 	touch "$TEMP_MD5_SAME"
 	if [ -n "$PARALLEL_PROCESSING" ] && [ $PARALLEL_PROCESSING -ge 1 ]
 	then
